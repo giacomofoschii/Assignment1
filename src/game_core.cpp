@@ -6,7 +6,7 @@
 #include <avr/sleep.h>
 
 #define MAX_IDLE_TIME 10000
-#define TIME_IN_GAME_OVER 100
+#define TIME_IN_GAME_OVER 10000
 #define T1_TIME 1000
 #define T2_TIME 3000
 #define T3_TIME 6000
@@ -142,6 +142,11 @@ void game_loop_generate_pattern(){
         } while (!quit);
     }
     generated = true;
+    print_on_console("Pattern generato: ");
+
+    for (int i = 0; i < NLEDS; i++) {
+        printf("%d ", current_pattern[i]);
+    }
   }
 }
 
@@ -149,14 +154,15 @@ void game_loop_generate_pattern(){
 void game_loop_display_pattern(){
   turn_off_pattern(current_pattern, max_time_to_turn_off);
   log(String("Now it's input time... waiting for: ") + max_time_to_form_pattern);
+  print_on_console("Inserire pattern");
   reset_player_input();
   change_game_state(GAME_LOOP_WAITING_PLAYER_PATTERN);
 }
 
 void change_to_game_over(){
-  print_on_console(String("Game Over - Final Score: ") + score);
   reset_led_board();
   go_on_lose();
+  print_on_console(String("Game Over - Final Score: ") + score);
   change_game_state(GAME_OVER);
 }
 

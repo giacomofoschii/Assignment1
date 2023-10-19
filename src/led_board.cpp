@@ -48,7 +48,7 @@ void go_on_pulsing(){
 
 void go_on_lose(){
   digitalWrite(LED_START, HIGH);
-  delay(10000);
+  delay(1000);
   digitalWrite(LED_START, LOW);
 }
 

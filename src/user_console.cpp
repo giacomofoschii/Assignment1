@@ -42,13 +42,12 @@ void button_handler(int i){
 int read_difficulty_level(){
   int pot_value = analogRead(POT_PIN);
   int ratio = 1023/DIFFICULTY_LEVELS;
-  int level = 1;
   for(int i = 1; i <= DIFFICULTY_LEVELS; i++){
     if (pot_value < i*ratio){
-      level = i;
+      return i;
     }
   }
-  return level;
+  return DIFFICULTY_LEVELS;
 }
 
 uint8_t* get_current_pattern(){
