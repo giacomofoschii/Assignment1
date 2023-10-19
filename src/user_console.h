@@ -18,9 +18,8 @@
 #define NO_SELECTION -1
 #define DIFFICULTY_LEVELS 4
 
+/*init the console*/
 void init_player_console();
-
-void print_on_console(const String& msg);
 
 /* read the difficulty level */
 int read_difficulty_level();
@@ -33,12 +32,6 @@ void reset_player_input();
 
 /* get current pattern inserted by player */
 uint8_t* get_current_pattern();
-
-/* for testing */
-void test_player_input();
-
-/* for debugging */
-void log(const String& msg);
  
 
 

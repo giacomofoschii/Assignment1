@@ -62,10 +62,6 @@ void init_player_console(){
   }
 }
 
-void print_on_console(const String& msg){
-  Serial.println(msg);
-}
-
 void reset_player_input(){
   long ts = millis();
   for (int i = 0; i < NUM_INPUT_POS; i++) {
@@ -76,26 +72,8 @@ void reset_player_input(){
   delay(BOUNCING_TIME);
   input_started = false;
   count = 0;
-  log("input reset");
 }
 
 bool player_input_started(){
   return input_started;
-}
-
-void log(const String& msg){
-  #ifdef __DEBUG__
-  Serial.println(msg);
-  #endif
-}
-
-
-void test_player_input(){
-  for (int i = 0; i < NUM_INPUT_POS; i++) {
-    if (inputPattern[i]) {
-      Serial.println(String("button ") + i + " pressed"); 
-    }
-  }
-  int value = analogRead(POT_PIN);
-  Serial.println(value);
 }

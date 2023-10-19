@@ -34,16 +34,16 @@ void turn_on_led(int nled) {
 void reset_pulsing() {
   pulseIntensity = 0;
   pulseDelta = 5;
-  analogWrite(LED_START, pulseIntensity);   
+  analogWrite(LED_START, pulseIntensity);
 }
 
 void go_on_pulsing(){
-  analogWrite(LED_START, pulseIntensity);   
+  analogWrite(LED_START, pulseIntensity);
   pulseIntensity = pulseIntensity + pulseDelta;
   if (pulseIntensity == 0 || pulseIntensity == 255) {
     pulseDelta = -pulseDelta ; 
-  }     
-  delay(15);                               
+  }
+  delay(15);
 }
 
 void go_on_lose(){

@@ -5,6 +5,7 @@
  * Foschi Giacomo (giacomo.foschi3@studio.unibo.it)
  * 
  */
+
 #include <Arduino.h>
 #include "config.h"
 #include "game_core.h"
