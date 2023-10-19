@@ -7,11 +7,11 @@
 
 #define MAX_IDLE_TIME 10000
 #define TIME_IN_GAME_OVER 10000
-#define T1_TIME 1000
-#define T2_TIME 3000
+#define T1_TIME 1500
+#define T2_TIME 2000
 #define T3_TIME 6000
-#define MIN_TIME_DISPLAY 700
-#define MIN_TIME_INPUT 1000
+#define MIN_TIME_DISPLAY 500
+#define MIN_TIME_INPUT 1500
 
 /* current pattern to be generated */
 uint8_t current_pattern[NLEDS];
@@ -126,27 +126,30 @@ void game_loop_generate_pattern(){
   }
 
   if (!generated) {
-    bool used[NLEDS] = {false};
+    boolean used[NLEDS];
+    for (int i = 0; i < NLEDS; i++) {
+      used[i] = false;
+    }
 
     for (int i = 0; i < NLEDS; i++) {
-        bool quit = false;
-        int n;
-
-        do {
-            n = rand() % NLEDS;
-            if (!used[n]) {
-                current_pattern[i] = n;
-                used[n] = true;
-                quit = true;
-            }
-        } while (!quit);
+      boolean done = false;
+      uint8_t n, j;
+      do {
+        n = random(NLEDS);
+        j = 0;
+        for (; j < i; j++) {
+          if (current_pattern[j] == n) {
+            break;
+          }
+        }
+        if (j == i) {
+          current_pattern[i] = n;
+          used[n] = true;
+          done = true;
+        }
+      } while (!done);
     }
     generated = true;
-    print_on_console("Pattern generato: ");
-
-    for (int i = 0; i < NLEDS; i++) {
-        printf("%d ", current_pattern[i]);
-    }
   }
 }
 

@@ -55,6 +55,6 @@ void go_on_lose(){
 void turn_off_pattern(uint8_t pattern[NLEDS], long delaytime){
   for (int i = 0; i < NLEDS; i++){
     digitalWrite(ledPin[pattern[i]], LOW);
+    delay(delaytime);
   }
-  delay(delaytime);
 }
