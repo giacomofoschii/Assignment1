@@ -2,6 +2,7 @@
 #include "Arduino.h"
 #include "config.h"
 #include "led_board.h"
+#include "game_core.h"
 
 #include <EnableInterrupt.h>
 
@@ -29,12 +30,16 @@ void button_handler(int i){
   if (ts - lastButtonPressedTimeStamps[i] > BOUNCING_TIME){
     lastButtonPressedTimeStamps[i] = ts;
     int status = digitalRead(inputPins[i]);
-    if (status == HIGH && !wasAlreadyPressed[i]) { 
-      input_started = true;
-      inputPattern[NUM_INPUT_POS - 1 - count] = i;
-      turn_on_led(i);
+    if (status == HIGH && !wasAlreadyPressed[i]) {
       wasAlreadyPressed[i] = true;
-      count++;
+      if(i == 0) {
+        input_started = true;
+      }
+      if(get_game_state() == GAME_LOOP_WAITING_PLAYER_PATTERN){
+        inputPattern[NUM_INPUT_POS - 1 - count] = i;
+        turn_on_led(i);
+        count++;
+      }
     }
   }
 }

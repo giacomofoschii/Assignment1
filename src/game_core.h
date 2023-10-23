@@ -16,6 +16,7 @@ extern int game_state;
 
 void update_game_state_time();
 void change_game_state(int new_state);
+int get_game_state();
 
 /* behaviour in the specific game states */
 void game_intro();

@@ -195,3 +195,7 @@ void game_over(){
      change_game_state(GAME_INTRO);
   }
 }
+
+int get_game_state(){
+  return game_state;
+}
